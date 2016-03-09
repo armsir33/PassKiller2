@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="common" template="/WEB-INF/layouts/classic.jsp">
+    <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+  </definition>
+  
+  <definition name="index" extends="common">
+    <put-attribute name="title" value="PassKiller homepage" />
+    <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+    <put-attribute name="current" value="index" />
+  </definition>
+  
+  <definition name="credentials" extends="common">
+    <put-attribute name="title" value="Get Password" />
+    <put-attribute name="body" value="/WEB-INF/jsp/credentials.jsp" />
+    <put-attribute name="current" value="credentials" />
+  </definition>
+  
+  <definition name="login" extends="common">
+    <put-attribute name="title" value="Sign In" />
+    <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    <put-attribute name="current" value="login" />
+  </definition>
+  
+  <definition name="admin" extends="common">
+    <put-attribute name="title" value="Admin Management" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin.jsp" />
+    <put-attribute name="current" value="admin" />
+  </definition>
+  
+  <definition name="docs" extends="common">
+    <put-attribute name="title" value="Documents" />
+    <put-attribute name="body" value="/WEB-INF/jsp/docs.jsp" />
+    <put-attribute name="current" value="docs" />
+  </definition>
+  
+  <definition name="register" extends="common">
+    <put-attribute name="title" value="Documents" />
+    <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
+    <put-attribute name="current" value="register" />
+  </definition>
+</tiles-definitions>
