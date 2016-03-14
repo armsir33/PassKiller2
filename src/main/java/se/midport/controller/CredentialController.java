@@ -29,7 +29,7 @@ public class CredentialController {
 	@RequestMapping(value = "/credentials", method = RequestMethod.GET)
 	public String getpass(Model model) {
 		PageRequest page = new PageRequest(0, PAGE_SIZE);
-		Page<Credential> credentials = credentialService.findAll(page);
+		Page<Credential> credentials = credentialService.findByRange("Public", page);
 		model.addAttribute("credentials", credentials.getContent());
 		model.addAttribute("pageNo", 1);
 		model.addAttribute("pageMax", credentials.getTotalPages());
@@ -39,7 +39,7 @@ public class CredentialController {
 	@RequestMapping(value = "/credentials/{pageNo}", method = RequestMethod.GET)
 	public String getpass(@PathVariable Integer pageNo, Model model) {
 		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
-		Page<Credential> credentials = credentialService.findAll(page);
+		Page<Credential> credentials = credentialService.findByRange("Public", page);
 		model.addAttribute("credentials", credentials.getContent());
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageMax", credentials.getTotalPages());

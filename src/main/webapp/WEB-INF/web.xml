@@ -37,4 +37,14 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>BotDetect Captcha</servlet-name>
+		<servlet-class>botdetect.web.http.CaptchaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BotDetect Captcha</servlet-name>
+		<url-pattern>/botdetectcapcaptcha
+		tcha</url-pattern>
+	</servlet-mapping>
 </web-app>

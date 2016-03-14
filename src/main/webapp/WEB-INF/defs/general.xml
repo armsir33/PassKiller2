@@ -42,4 +42,46 @@
     <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
     <put-attribute name="current" value="register" />
   </definition>
+  
+  <definition name="account" extends="common">
+    <put-attribute name="title" value="User Portal" />
+    <put-attribute name="body" value="/WEB-INF/jsp/account.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
+  
+  <definition name="credential-edit" extends="common">
+    <put-attribute name="title" value="Edit Credential" />
+    <put-attribute name="body" value="/WEB-INF/jsp/credentialEdit.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
+  
+  <definition name="contact-edit" extends="common">
+    <put-attribute name="title" value="Edit Contact" />
+    <put-attribute name="body" value="/WEB-INF/jsp/contactEdit.jsp" />
+    <put-attribute name="current" value="admin" />
+  </definition>
+  
+  <definition name="admin-browse-users" extends="common">
+    <put-attribute name="title" value="List users" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin-browse-users.jsp" />
+    <put-attribute name="current" value="admin" />
+  </definition>
+  
+  <definition name="admin-browse-credentials" extends="common">
+    <put-attribute name="title" value="List credentials" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin-browse-credentials.jsp" />
+    <put-attribute name="current" value="admin" />
+  </definition>
+  
+  <definition name="admin-browse-contacts" extends="common">
+    <put-attribute name="title" value="List Contacts" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin-browse-contacts.jsp" />
+    <put-attribute name="current" value="admin" />
+  </definition>
+  
+  <definition name="contact" extends="common">
+    <put-attribute name="title" value="Contact Us" />
+    <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />
+    <put-attribute name="current" value="contact" />
+  </definition>
 </tiles-definitions>

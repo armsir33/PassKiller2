@@ -3,7 +3,6 @@
 
 <%@ include file="../layouts/taglib.jsp"%>
 
-<
 <style>
 /* Space out content a bit */
 body {
@@ -38,23 +37,25 @@ body {
 	<h1 class="well">User Registration</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form:form commandName="appuser">
+			<form:form id="signupForm" commandName="userform">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
 							<label>Username</label> 
 							<form:input path="username" placeholder="Enter Username Here.." cssClass="form-control" />
 						</div>
+						<form:errors path="username" cssClass="alert alert-danger error" />
 					</div>
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
 							<label>Password</label> 
-							<form:password path="password" placeholder="Enter Password Here.." cssClass="form-control" />
+							<form:password id="password" path="password" placeholder="Enter Password Here.." cssClass="form-control" />
 						</div>
 						<div class="col-sm-6 form-group has-error">
 							<label>Re-Password</label> 
 							<form:password path="repassword" placeholder="Re-Enter Password Here.." cssClass="form-control" />
 						</div>
+						<form:errors path="password" cssClass="alert alert-danger error" />
 					</div>
 					<div class="row">
 						<div class="col-sm-6 form-group">
@@ -102,6 +103,7 @@ body {
 						<label>Email Address</label> 
 						<form:input path="email" placeholder="Enter Email Address Here.." cssClass="form-control" />
 					</div>
+					<form:errors path="email" cssClass="alert alert-danger error" />
 					<div class="form-group">
 						<label>Website</label> 
 						<form:input path="website" placeholder="Enter Website Name Here.." cssClass="form-control" />
@@ -112,3 +114,56 @@ body {
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#signupForm").validate({
+			rules: {
+				name: {
+					required : true,
+					minlength : 3
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				repassword: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				message: {
+					required : true,
+					minlength : 5
+				}
+			},
+			messages: {
+				name: {
+					required: "<span class='alert alert-danger error'>Please provide a name</span>",
+					minlength: "<span class='alert alert-danger error'>Your name must be at least 3 characters long</span>"
+				},
+				password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},
+				repassword: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long",
+					equalTo: "Please enter the same password as above"
+				},
+				email: "<span class='alert alert-danger error'>Please enter a valid email address</span>",
+				message: {
+					required: "<span class='alert alert-danger error'>Please provide messages</span>",
+					minlength: "<span class='alert alert-danger error'>Your message must be at least 5 characters long</span>"
+				}
+			}
+		}		
+	
+	);
+	
+});
+</script>

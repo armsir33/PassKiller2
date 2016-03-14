@@ -9,6 +9,9 @@
 	<http>
 		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/account**" access="isAuthenticated()" />
+		<intercept-url pattern="/account/**" access="isAuthenticated()" />
+		<intercept-url pattern="/account/**/**" access="isAuthenticated()" />
 		<form-login login-page="/login.html" />
 		<logout logout-url="/logout" />
 		

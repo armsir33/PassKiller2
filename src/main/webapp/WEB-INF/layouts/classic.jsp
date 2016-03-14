@@ -17,6 +17,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 
 <title><tiles:getAsString name="title" /></title>
 
@@ -69,6 +70,8 @@ body {
 						href='<spring:url value="/" />'>Home</a></li>
 					<li class="${current == 'credentials' ? 'active' : '' }"><a
 						href='<spring:url value="/credentials.html" />'>Get Pass</a></li>
+					<li class="${current == 'contact' ? 'active' : '' }"><a
+						href='<spring:url value="/contact.html" />'>Contact Us</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<security:authorize access="! isAuthenticated()">
@@ -77,9 +80,15 @@ body {
 						<li class="${current == 'login' ? 'active' : '' }"><a
 							href='<spring:url value="/login.html" />'>Sign In</a></li>
 					</security:authorize>
-					<security:authorize access="isAuthenticated() and hasRole('ADMIN')">
-						<li class="${current == 'admin' ? 'active' : '' }"><a
-							href='<spring:url value="/admin.html" />'>Admin</a></li>
+					<security:authorize access="isAuthenticated()">
+						<security:authorize access="hasRole('ADMIN')">
+							<li class="${current == 'admin' ? 'active' : '' }"><a
+								href='<spring:url value="/admin.html" />'>Admin</a></li>
+						</security:authorize>
+						<security:authorize access="hasRole('USER')">
+							<li class="${current == 'account' ? 'active' : '' }"><a
+								href='<spring:url value="/account.html" />'>My Account</a></li>
+						</security:authorize>
 						<li><a href="<spring:url value="/logout" />">Logout</a></li>
 					</security:authorize>
 				</ul>

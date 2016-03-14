@@ -4,5 +4,6 @@
 		<class>se.midport.entity.AppUser</class>
 		<class>se.midport.entity.Role</class>
 		<class>se.midport.entity.Credential</class>
+		<class>se.midport.entity.Contact</class>
 	</persistence-unit>
 </persistence>

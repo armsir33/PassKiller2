@@ -26,6 +26,8 @@ public class Credential {
 
 	private Date date;
 
+	private String range;
+
 	public Integer getId() {
 		return id;
 	}
@@ -88,6 +90,14 @@ public class Credential {
 
 	public void setEnvironment(String environment) {
 		this.environment = environment;
+	}
+
+	public String getRange() {
+		return range;
+	}
+
+	public void setRange(String range) {
+		this.range = range;
 	}
 
 }

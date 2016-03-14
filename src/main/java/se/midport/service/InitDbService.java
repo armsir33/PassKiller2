@@ -74,6 +74,7 @@ public class InitDbService {
 		Date ionCurDate = new Date();
 		format.format(ionCurDate);
 		ionCredential.setDate(ionCurDate);
+		ionCredential.setRange("Public");
 		credentialRepository.save(ionCredential);
 		
 		Credential lnCredential = new Credential();
@@ -82,6 +83,7 @@ public class InitDbService {
 		Date lnCurDate = new Date();
 		format.format(lnCurDate);
 		lnCredential.setDate(lnCurDate);
+		lnCredential.setRange("Public");
 		credentialRepository.save(lnCredential);
 		
 		Credential worktopCredential = new Credential();
@@ -90,6 +92,7 @@ public class InitDbService {
 		Date wkCurDate = new Date();
 		format.format(wkCurDate);
 		worktopCredential.setDate(wkCurDate);
+		worktopCredential.setRange("Public");
 		credentialRepository.save(worktopCredential);
 	}
 }
