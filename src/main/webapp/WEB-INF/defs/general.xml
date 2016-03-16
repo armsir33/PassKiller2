@@ -38,7 +38,7 @@
   </definition>
   
   <definition name="register" extends="common">
-    <put-attribute name="title" value="Documents" />
+    <put-attribute name="title" value="Sign Up" />
     <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
     <put-attribute name="current" value="register" />
   </definition>
@@ -83,5 +83,11 @@
     <put-attribute name="title" value="Contact Us" />
     <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />
     <put-attribute name="current" value="contact" />
+  </definition>
+  
+  <definition name="contact-reply" extends="common">
+    <put-attribute name="title" value="Reply User" />
+    <put-attribute name="body" value="/WEB-INF/jsp/contact-reply.jsp" />
+    <put-attribute name="current" value="admin" />
   </definition>
 </tiles-definitions>

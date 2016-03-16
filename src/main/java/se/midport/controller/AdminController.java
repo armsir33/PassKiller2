@@ -137,19 +137,38 @@ public class AdminController {
 	@RequestMapping(value = "/admin/credential-remove/{id}", method = RequestMethod.GET)
 	public String removeCredential(@PathVariable Integer id, Model model) {
 		credentialService.delete(id);
-		return "admin-browse-credentials";
+		return "redirect:/admin/browse-credentials.html";
 	}
 	
 	@RequestMapping(value = "/admin/contact-remove/{id}", method = RequestMethod.GET)
 	public String removeContact(@PathVariable Integer id, Model model) {
 		contactService.delete(id);
-		return "admin-browse-contact";
+		return "redirect:/admin/browse-contacts.html";
 	}
 	
 	@RequestMapping(value = "/admin/user-remove/{id}", method = RequestMethod.GET)
 	public String removeUser(@PathVariable Integer id, Model model) {
 		userService.delete(id);
-		return "admin-browse-users";
+		return "redirect:/admin/browse-users.html";
+	}
+	
+	@RequestMapping(value = "/admin/user-activate/{id}", method = RequestMethod.GET)
+	public String activateUser(@PathVariable Integer id, Model model) {
+		userService.updateActivateStatus(id);
+		AppUser appUser = userService.findOne(id);
+		
+		// Notify user
+		String username = appUser.getUsername();
+		String email = appUser.getEmail();
+		userService.email(username, email);
+		
+		return "redirect:/admin/browse-users.html";
+	}
+	
+	@RequestMapping(value = "/admin/user-deactivate/{id}", method = RequestMethod.GET)
+	public String deactivateUser(@PathVariable Integer id, Model model) {
+		userService.updateDeactivateStatus(id);
+		return "redirect:/admin/browse-users.html";
 	}
 	
 	@RequestMapping(value = "/admin/users/search", method = RequestMethod.GET)
@@ -184,9 +203,26 @@ public class AdminController {
 		return "contact-edit";
 	}
 	
+	@RequestMapping(value = "/admin/contact-reply/{id}", method = RequestMethod.GET)
+	public String replyContact(@PathVariable Integer id, Model model) {
+		Contact contact = contactService.findOne(id);
+		contact.setMessage("");
+		model.addAttribute("contact", contact);
+		return "contact-reply";
+	}
+	
 	@RequestMapping(value = "/admin/contact-edit/{id}", method = RequestMethod.POST)
 	public String saveEditContact(@ModelAttribute("contact") Contact contact, @PathVariable Integer id) {
 		contactService.updateContact(id, contact);
+		return "redirect:/admin/browse-contacts.html";
+	}
+	
+	@RequestMapping(value = "/admin/contact-reply/{id}", method = RequestMethod.POST)
+	public String replyContactSubmit(@ModelAttribute("contact") Contact contact, @PathVariable Integer id) {
+		String emailAddress = contact.getEmail();
+		String name = contact.getName();
+		String message = contact.getMessage();
+		userService.emailUser(name, emailAddress, message);
 		return "redirect:/admin/browse-contacts.html";
 	}
 	

@@ -34,13 +34,14 @@ body {
 		<div class="alert alert-success">Edit successfully</div>
 	</c:if>
 
-
-
+	<c:if test="${param.password_mismatch_failed eq true}">
+		<div class="alert alert-danger">New Password not matched</div>
+	</c:if>
 
 	<h1 class="well">User Details</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form:form commandName="appuser" action="/account/user-edit">
+			<form:form commandName="userform" action="/account/user-edit">
 				<div class="col-sm-12">
 
 
@@ -54,6 +55,8 @@ body {
 								aria-controls="address" role="tab" data-toggle="tab">Address</a></li>
 							<li role="presentation"><a href="#contact"
 								aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+							<li role="presentation"><a href="#password"
+								aria-controls="contact" role="tab" data-toggle="tab">Password</a></li>
 						</ul>
 						
 						<br/>
@@ -131,13 +134,26 @@ body {
 								</div>
 								<div class="form-group">
 									<label>Email Address</label>
-									<form:input path="email" readonly="true"
-										cssClass="form-control" />
+									<form:input path="email" cssClass="form-control" />
 								</div>
 								<div class="form-group">
 									<label>Website</label>
 									<form:input path="website"
 										placeholder="Enter Website Name Here.."
+										cssClass="form-control" />
+								</div>
+							</div>
+							
+							<div role="tabpanel" class="tab-pane" id="password">
+								<div class="form-group">
+									<label>New Password</label>
+									<form:password path="password" placeholder="Enter New Password again Here.."
+										cssClass="form-control" />
+								</div>
+								<div class="form-group">
+									<label>New Password Again</label>
+									<form:password path="repassword"
+										placeholder="Enter New Password again Here.."
 										cssClass="form-control" />
 								</div>
 							</div>

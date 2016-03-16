@@ -40,6 +40,7 @@
 				<th>Last Name</th>
 				<th>Email</th>
 				<th>Phone Number</th>
+				<th>Status</th>
 				<th>Operations</th>
 			</tr>
 		</thead>
@@ -51,7 +52,15 @@
 					<td>${user.lastName}</td>
 					<td>${user.email}</td>
 					<td>${user.phone}</td>
-					<td><a href="/admin/user-remove/${user.id}.html"
+					<td>${user.enabled}</td>
+					<td>
+						<c:if test="${user.enabled eq false}">
+							<a href="/admin/user-activate/${user.id}.html" class="btn btn-info triggerUserActivate">Activate</a>
+						</c:if>
+						<c:if test="${user.enabled eq true}">
+							<a href="/admin/user-deactivate/${user.id}.html" class="btn btn-info triggerUserDeactivate">Deactivate</a>
+						</c:if>
+						<a href="/admin/user-remove/${user.id}.html"
 						class="btn btn-danger triggerUserRemove">Delete</a></td>
 				</tr>
 			</c:forEach>
@@ -69,6 +78,46 @@
 		</ul>
 	</nav>
 
+	<div class="modal fade" id="modalUserActivate" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Activate User</h4>
+				</div>
+				<div class="modal-body">Really activate?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<a href="" class="btn btn-info activateBtn">Activate</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modalUserDeactivate" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Deactivate User</h4>
+				</div>
+				<div class="modal-body">Really deactivate?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<a href="" class="btn btn-info deactivateBtn">Deactivate</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="modal fade" id="modalUserRemove" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -112,6 +161,22 @@
 							$("#modalUserRemove").modal();
 						});
 
+				$(".triggerUserActivate").click(
+						function(e) {
+							e.preventDefault();
+							$("#modalUserActivate .activateBtn").attr("href",
+									$(this).attr("href"));
+							$("#modalUserActivate").modal();
+						});
+				
+				$(".triggerUserDeactivate").click(
+						function(e) {
+							e.preventDefault();
+							$("#modalUserDeactivate .deactivateBtn").attr("href",
+									$(this).attr("href"));
+							$("#modalUserDeactivate").modal();
+						});
+				
 			});
 </script>
 </div>

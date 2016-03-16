@@ -17,7 +17,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 
 <title><tiles:getAsString name="title" /></title>
 
@@ -68,8 +69,10 @@ body {
 				<ul class="nav navbar-nav">
 					<li class="${current == 'index' ? 'active' : '' }"><a
 						href='<spring:url value="/" />'>Home</a></li>
-					<li class="${current == 'credentials' ? 'active' : '' }"><a
-						href='<spring:url value="/credentials.html" />'>Get Pass</a></li>
+					<security:authorize access="isAuthenticated()">
+						<li class="${current == 'credentials' ? 'active' : '' }"><a
+							href='<spring:url value="/credentials.html" />'>Get Pass</a></li>
+					</security:authorize>
 					<li class="${current == 'contact' ? 'active' : '' }"><a
 						href='<spring:url value="/contact.html" />'>Contact Us</a></li>
 				</ul>

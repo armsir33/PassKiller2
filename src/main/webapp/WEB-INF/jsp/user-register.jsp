@@ -31,7 +31,11 @@ body {
 
 <div class="container">
 	<c:if test="${param.success eq true}">
-		<div class="alert alert-success">Registration successfully</div>
+		<div class="alert alert-success">Registration successfully. Please wait for administrator to activate your account. You will receive a notification email with login information after approved.</div>
+	</c:if>
+
+	<c:if test="${param.failed eq true}">
+		<div class="alert alert-danger">Registration failed</div>
 	</c:if>
 
 	<h1 class="well">User Registration</h1>
@@ -41,72 +45,90 @@ body {
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
-							<label>Username</label> 
-							<form:input path="username" placeholder="Enter Username Here.." cssClass="form-control" />
+							<label>Username</label>
+							<form:input path="username" placeholder="Enter Username Here.."
+								cssClass="form-control" />
 						</div>
 						<form:errors path="username" cssClass="alert alert-danger error" />
 					</div>
+					<c:if test="${param.failed eq true}">
+						<div class="alert alert-danger">Username is aleady
+							registered</div>
+					</c:if>
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
-							<label>Password</label> 
-							<form:password id="password" path="password" placeholder="Enter Password Here.." cssClass="form-control" />
+							<label>Password</label>
+							<form:password id="password" path="password"
+								placeholder="Enter Password Here.." cssClass="form-control" />
 						</div>
 						<div class="col-sm-6 form-group has-error">
-							<label>Re-Password</label> 
-							<form:password path="repassword" placeholder="Re-Enter Password Here.." cssClass="form-control" />
+							<label>Re-Password</label>
+							<form:password path="repassword"
+								placeholder="Re-Enter Password Here.." cssClass="form-control" />
 						</div>
 						<form:errors path="password" cssClass="alert alert-danger error" />
 					</div>
 					<div class="row">
 						<div class="col-sm-6 form-group">
-							<label>First Name</label> 
-							<form:input path="firstName" placeholder="Enter First Name Here.." cssClass="form-control" />
+							<label>First Name</label>
+							<form:input path="firstName"
+								placeholder="Enter First Name Here.." cssClass="form-control" />
 						</div>
 						<div class="col-sm-6 form-group">
-							<label>Last Name</label> 
-							<form:input path="lastName" placeholder="Enter Last Name Here.." cssClass="form-control" />
+							<label>Last Name</label>
+							<form:input path="lastName" placeholder="Enter Last Name Here.."
+								cssClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label>Address</label>
-						<form:textarea path="address" placeholder="Enter Address Here.." rows="3" class="form-control"/>
+						<form:textarea path="address" placeholder="Enter Address Here.."
+							rows="3" class="form-control" />
 					</div>
 					<div class="row">
 						<div class="col-sm-4 form-group">
-							<label>City</label> 
-							<form:input path="city" placeholder="Enter City Name Here.." cssClass="form-control" />
+							<label>City</label>
+							<form:input path="city" placeholder="Enter City Name Here.."
+								cssClass="form-control" />
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>State</label> 
-							<form:input path="state" placeholder="Enter State Name Here.." cssClass="form-control" />
+							<label>State</label>
+							<form:input path="state" placeholder="Enter State Name Here.."
+								cssClass="form-control" />
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>Zip</label> 
-							<form:input path="zip" placeholder="Enter Zip Code Here.." cssClass="form-control" />
+							<label>Zip</label>
+							<form:input path="zip" placeholder="Enter Zip Code Here.."
+								cssClass="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6 form-group">
-							<label>Title</label> 
-							<form:input path="title" placeholder="Enter Designation Here.." cssClass="form-control" />
+							<label>Title</label>
+							<form:input path="title" placeholder="Enter Designation Here.."
+								cssClass="form-control" />
 						</div>
 						<div class="col-sm-6 form-group">
-							<label>Company</label> 
-							<form:input path="company" placeholder="Enter Company Name Here.." cssClass="form-control" />
+							<label>Company</label>
+							<form:input path="company"
+								placeholder="Enter Company Name Here.." cssClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Phone Number</label> 
-						<form:input path="phone" placeholder="Enter Phone Number Here.." cssClass="form-control" />
+						<label>Phone Number</label>
+						<form:input path="phone" placeholder="Enter Phone Number Here.."
+							cssClass="form-control" />
 					</div>
-					<div class="form-group">
-						<label>Email Address</label> 
-						<form:input path="email" placeholder="Enter Email Address Here.." cssClass="form-control" />
+					<div class="form-group has-error">
+						<label>Email Address</label>
+						<form:input path="email" placeholder="Enter Email Address Here.."
+							cssClass="form-control" />
 					</div>
 					<form:errors path="email" cssClass="alert alert-danger error" />
 					<div class="form-group">
-						<label>Website</label> 
-						<form:input path="website" placeholder="Enter Website Name Here.." cssClass="form-control" />
+						<label>Website</label>
+						<form:input path="website" placeholder="Enter Website Name Here.."
+							cssClass="form-control" />
 					</div>
 					<input type="submit" value="Sign up" class="btn btn-lg btn-primary">
 				</div>
@@ -116,54 +138,50 @@ body {
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#signupForm").validate({
-			rules: {
-				name: {
-					required : true,
-					minlength : 3
-				},
-				password: {
-					required: true,
-					minlength: 5
-				},
-				repassword: {
-					required: true,
-					minlength: 5,
-					equalTo: "#password"
-				},
-				email: {
-					required: true,
-					email: true
-				},
-				message: {
-					required : true,
-					minlength : 5
-				}
-			},
-			messages: {
-				name: {
-					required: "<span class='alert alert-danger error'>Please provide a name</span>",
-					minlength: "<span class='alert alert-danger error'>Your name must be at least 3 characters long</span>"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},
-				repassword: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
-					equalTo: "Please enter the same password as above"
-				},
-				email: "<span class='alert alert-danger error'>Please enter a valid email address</span>",
-				message: {
-					required: "<span class='alert alert-danger error'>Please provide messages</span>",
-					minlength: "<span class='alert alert-danger error'>Your message must be at least 5 characters long</span>"
-				}
-			}
-		}		
-	
-	);
-	
-});
+	$(document)
+			.ready(
+					function() {
+						$("#signupForm")
+								.validate(
+										{
+											rules : {
+												name : {
+													required : true,
+													minlength : 3
+												},
+												password : {
+													required : true,
+													minlength : 5
+												},
+												repassword : {
+													required : true,
+													minlength : 5,
+													equalTo : "#password"
+												},
+												email : {
+													required : true,
+													email : true
+												}
+											},
+											messages : {
+												name : {
+													required : "<span class='alert alert-danger error'>Please provide a name</span>",
+													minlength : "<span class='alert alert-danger error'>Your name must be at least 3 characters long</span>"
+												},
+												password : {
+													required : "<span class='alert alert-danger error'>Please provide a password</span>",
+													minlength : "<span class='alert alert-danger error'>Your password must be at least 5 characters long</span>"
+												},
+												repassword : {
+													required : "<span class='alert alert-danger error'>Please provide a password</span>",
+													minlength : "<span class='alert alert-danger error'>Your password must be at least 5 characters long</span>",
+													equalTo : "<span class='alert alert-danger error'>Please enter the same password as above</span>"
+												},
+												email : "<span class='alert alert-danger error'>Please enter a valid email address</span>"
+											}
+										}
+
+								);
+
+					});
 </script>

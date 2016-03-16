@@ -49,11 +49,10 @@
 					<td>${contact.email}</td>
 					<td>${contact.message}</td>
 					<td>${contact.status}</td>
-					<td>
-					<a href="/admin/contact-edit/${contact.id}.html"
-						class="btn btn-info">Edit</a>
-					<a href="/admin/contact-remove/${contact.id}.html"
-						class="btn btn-danger triggerUserRemove">Delete</a></td>
+					<td><a href="/admin/contact-edit/${contact.id}.html" class="btn btn-info">Edit</a> 
+						<a href="/admin/contact-remove/${contact.id}.html" class="btn btn-danger triggerContactRemove">Delete</a> 
+						<a href="/admin/contact-reply/${contact.id}.html" class="btn btn-info">Reply</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -97,15 +96,7 @@
 			function() {
 				$('.nav-tabs a:second').tab('show') // Select first tab
 
-				$(".triggerRemove").click(
-						function(e) {
-							e.preventDefault();
-							$("#modalRemove .removeBtn").attr("href",
-									$(this).attr("href"));
-							$("#modalRemove").modal();
-						});
-
-				$(".triggerUserRemove").click(
+				$(".triggerContactRemove").click(
 						function(e) {
 							e.preventDefault();
 							$("#modalContactRemove .removeBtn").attr("href",
@@ -115,4 +106,3 @@
 
 			});
 </script>
-</div>

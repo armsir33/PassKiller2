@@ -5,6 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import se.midport.entity.AppUser;
 import se.midport.repository.UserRepository;
@@ -12,6 +15,12 @@ import se.midport.repository.UserRepository;
 @Service
 @Transactional
 public class UserService {
+	
+	@Autowired
+	private MailSender mailSender;
+    
+	@Autowired
+	private SimpleMailMessage templateMessage;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -37,7 +46,6 @@ public class UserService {
 	}
 
 	public void updateByUsername(AppUser appUser) {
-		System.out.println("ddddddd " + appUser.getFirstName());
 		List<AppUser> users = userRepository.findByUsername(appUser.getUsername());
 		if(!users.isEmpty()) {
 			AppUser fetchedUser = users.get(0);
@@ -51,6 +59,7 @@ public class UserService {
 			fetchedUser.setTitle(appUser.getTitle());
 			fetchedUser.setWebsite(appUser.getWebsite());
 			fetchedUser.setZip(appUser.getZip());
+			fetchedUser.setPassword(appUser.getPassword());
 			userRepository.saveAndFlush(fetchedUser);
 		}
 	}
@@ -63,4 +72,74 @@ public class UserService {
 		return userRepository.findOne(id);
 	}
 
+	public boolean checkIfUsernameExist(String username) {
+		boolean ret = false;
+		List<AppUser> users = userRepository.findByUsername(username);
+		if(users == null || users.isEmpty())
+			ret = false;
+		else
+			ret = true;
+		return ret;
+	}
+
+	public void updateActivateStatus(Integer id) {
+		AppUser appUser = userRepository.findOne(id);
+		appUser.setEnabled(true);
+		userRepository.saveAndFlush(appUser);
+	}
+
+	public void email(String username, String email) {
+		SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
+        msg.setTo(email);
+        msg.setText(
+            "Dear " + username
+                + "\r\n\r\nWelcome to Midport PassKiller \r\nYour account is activated now.\r\n\r\nBest Wishes\r\n\r\nPassKiller Management Team");
+        
+        try{
+            this.mailSender.send(msg);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+	}
+
+	public void emailAdmin(String username) {
+		AppUser admin = userRepository.findByUsername("admin").get(0);
+		String email = admin.getEmail();
+		
+		SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
+        msg.setTo(email);
+        msg.setText(
+            "Dear Admin, \r\n\r\nA new user " + username +" is registered. Please check identity and decide whether activate.\r\n\r\nBest Wishes\r\n\r\nPassKiller Management Team");
+        
+        try{
+            this.mailSender.send(msg);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+	}
+
+	public void updateDeactivateStatus(Integer id) {
+		AppUser appUser = userRepository.findOne(id);
+		appUser.setEnabled(false);
+		userRepository.saveAndFlush(appUser);
+	}
+
+	public void emailUser(String name, String emailAddress, String message) {
+		SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
+        msg.setTo(emailAddress);
+        msg.setText(
+            "Dear "+name+"\r\n\r\n"+message+"\r\n\r\nBest Wishes\r\n\r\nPassKiller Management Team");
+        
+        try{
+            this.mailSender.send(msg);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+	}
 }
