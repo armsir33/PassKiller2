@@ -110,7 +110,6 @@ public class UserController {
 			String lastName = userForm.getLastName();
 			appUser.setLastName(lastName);
 			String password = userForm.getPassword();
-			appUser.setPassword(password);
 			appUser.setPhone(userForm.getPhone());
 			appUser.setState(userForm.getState());
 			appUser.setTitle(userForm.getTitle());
@@ -120,7 +119,7 @@ public class UserController {
 			appUser.setZip(userForm.getZip());
 			appUser.setEnabled(false);
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			appUser.setPassword(encoder.encode(appUser.getPassword()));
+			appUser.setPassword(encoder.encode(password));
 			Role userRole = roleRepository.findByName("ROLE_USER");
 			List<Role> roles = new ArrayList<Role>();
 			roles.add(userRole);

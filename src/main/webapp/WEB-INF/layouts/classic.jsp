@@ -88,7 +88,7 @@ body {
 							<li class="${current == 'admin' ? 'active' : '' }"><a
 								href='<spring:url value="/admin.html" />'>Admin</a></li>
 						</security:authorize>
-						<security:authorize access="hasRole('USER')">
+						<security:authorize access="hasRole('USER') or hasRole('ADMIN')">
 							<li class="${current == 'account' ? 'active' : '' }"><a
 								href='<spring:url value="/account.html" />'>My Account</a></li>
 						</security:authorize>
