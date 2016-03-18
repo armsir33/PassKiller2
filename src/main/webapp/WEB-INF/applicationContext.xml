@@ -14,10 +14,9 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<!-- <jdbc:embedded-database id="dataSource" generate-name="true" type="HSQL" 
-		/> -->
+	<jdbc:embedded-database id="dataSource" generate-name="true" type="HSQL" />
 
-	<bean class="java.net.URI" id="dbUrl">
+	<!-- <bean class="java.net.URI" id="dbUrl">
 		<constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
 	</bean>
 
@@ -26,7 +25,7 @@
 			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
 		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
 		<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
-	</bean>
+	</bean> -->
 
 	<bean id="emf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
