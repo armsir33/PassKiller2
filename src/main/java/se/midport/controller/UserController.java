@@ -2,6 +2,7 @@ package se.midport.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -83,6 +84,7 @@ public class UserController {
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String accountSubmit(@ModelAttribute("credential") Credential credential, Principal principal) {
 		credential.setModifier(principal.getName());
+		credential.setDate(new Date());
 		credentialService.save(credential);
 		return "redirect:/account.html";
 	}
