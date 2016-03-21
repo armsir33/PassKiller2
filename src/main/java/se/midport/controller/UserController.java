@@ -88,6 +88,16 @@ public class UserController {
 		credentialService.save(credential);
 		return "redirect:/account.html";
 	}
+	
+	@RequestMapping(value = "/account/{pageNo}", method = RequestMethod.GET)
+	public String getpass(@PathVariable Integer pageNo, Model model) {
+		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findAll(page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "admin-browse-credentials";
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
