@@ -1,11 +1,14 @@
 package se.midport.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -26,6 +29,9 @@ public class Contact {
 	private String email;
 
 	@NotNull
+	@Lob
+	@Type(type = "org.hibernate.type.MaterializedClobType")
+	@Column(length = Integer.MAX_VALUE)
 	private String message;
 
 	private String status;
