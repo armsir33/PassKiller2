@@ -37,7 +37,25 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+	<filter>
+        <filter-name>characterEncoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    	
 	<servlet>
 		<servlet-name>BotDetect Captcha</servlet-name>
 		<servlet-class>botdetect.web.http.CaptchaServlet</servlet-class>
@@ -47,4 +65,5 @@
 		<url-pattern>/botdetectcapcaptcha
 		tcha</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
