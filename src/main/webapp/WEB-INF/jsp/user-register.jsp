@@ -34,14 +34,10 @@ body {
 		<div class="alert alert-success">Registration successfully. Please wait for administrator to activate your account. You will receive a notification email with login information after approved.</div>
 	</c:if>
 
-	<c:if test="${param.failed eq true}">
-		<div class="alert alert-danger">Registration failed</div>
-	</c:if>
-
 	<h1 class="well">User Registration</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form:form id="signupForm" commandName="userform">
+			<form:form id="signupForm" commandName="appuser">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
@@ -49,12 +45,8 @@ body {
 							<form:input path="username" placeholder="Enter Username Here.."
 								cssClass="form-control" />
 						</div>
-						<form:errors path="username" cssClass="alert alert-danger error" />
 					</div>
-					<c:if test="${param.failed eq true}">
-						<div class="alert alert-danger">Username is aleady
-							registered</div>
-					</c:if>
+					<form:errors path="username" cssClass="alert alert-danger error" />
 					<div class="row">
 						<div class="col-sm-6 form-group has-error">
 							<label>Password</label>
@@ -66,8 +58,8 @@ body {
 							<form:password path="repassword"
 								placeholder="Re-Enter Password Here.." cssClass="form-control" />
 						</div>
-						<form:errors path="password" cssClass="alert alert-danger error" />
 					</div>
+					<form:errors path="password" cssClass="alert alert-danger error" />
 					<div class="row">
 						<div class="col-sm-6 form-group">
 							<label>First Name</label>

@@ -62,8 +62,16 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BotDetect Captcha</servlet-name>
-		<url-pattern>/botdetectcapcaptcha
-		tcha</url-pattern>
+		<url-pattern>/botdetectcapcaptchatcha</url-pattern>
 	</servlet-mapping>
 	
+	<context-param>
+		<param-name>defaultHtmlEscape</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>dev</param-value>
+	</context-param>
 </web-app>

@@ -41,7 +41,7 @@ body {
 	<h1 class="well">User Details</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form:form commandName="userform" action="/account/user-edit">
+			<form:form id="signinForm" commandName="appuser" action="/account/user-edit">
 				<div class="col-sm-12">
 
 
@@ -183,4 +183,51 @@ body {
 		e.preventDefault()
 		$(this).tab('show')
 	})
+	
+	$(document)
+			.ready(
+					function() {
+						$("#signinForm")
+								.validate(
+										{
+											rules : {
+												name : {
+													required : true,
+													minlength : 3
+												},
+												password : {
+													required : true,
+													minlength : 5
+												},
+												repassword : {
+													required : true,
+													minlength : 5,
+													equalTo : "#password"
+												},
+												email : {
+													required : true,
+													email : true
+												}
+											},
+											messages : {
+												name : {
+													required : "<span class='alert alert-danger error'>Please provide a name</span>",
+													minlength : "<span class='alert alert-danger error'>Your name must be at least 3 characters long</span>"
+												},
+												password : {
+													required : "<span class='alert alert-danger error'>Please provide a password</span>",
+													minlength : "<span class='alert alert-danger error'>Your password must be at least 5 characters long</span>"
+												},
+												repassword : {
+													required : "<span class='alert alert-danger error'>Please provide a password</span>",
+													minlength : "<span class='alert alert-danger error'>Your password must be at least 5 characters long</span>",
+													equalTo : "<span class='alert alert-danger error'>Please enter the same password as above</span>"
+												},
+												email : "<span class='alert alert-danger error'>Please enter a valid email address</span>"
+											}
+										}
+
+								);
+
+					});
 </script>

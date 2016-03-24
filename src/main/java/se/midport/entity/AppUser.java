@@ -1,6 +1,8 @@
 package se.midport.entity;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,15 +13,17 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import se.midport.annotation.UniqueUsername;
+
 @Entity
 public class AppUser {
 	@Id
 	@GeneratedValue
 	private Integer id;
 
-	@NotNull
-	@NotEmpty
 	@Size(min = 3, message = "Your name must be greater than 3 characters")
+	@Column(unique=true)
+	@UniqueUsername(message = "Such username already exists!")
 	private String username;
 
 	@NotNull
@@ -78,6 +82,14 @@ public class AppUser {
 	}
 
 	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getRepassword() {
+		return password;
+	}
+	
+	public void setRepassword(String password) {
 		this.password = password;
 	}
 
