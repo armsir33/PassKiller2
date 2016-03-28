@@ -4,12 +4,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import se.midport.entity.AppUser;
+import se.midport.entity.Credential;
 import se.midport.repository.UserRepository;
 
 @Service
@@ -142,4 +144,25 @@ public class UserService {
             System.err.println(ex.getMessage());
         }
 	}
+
+	public Page<AppUser> findByUsername(String username, Pageable pageable) {
+		return userRepository.findByUsernameContainingIgnoreCase(username, pageable);
+	}
+
+	public Page<AppUser> findByFirstName(String firstName, Pageable pageable) {
+		return userRepository.findByFirstNameContainingIgnoreCase(firstName, pageable);
+	}
+
+	public Page<AppUser> findByLastName(String lastName, Pageable pageable) {
+		return userRepository.findByLastNameContainingIgnoreCase(lastName,pageable);
+	}
+
+	public Page<AppUser> findByEmail(String email, Pageable pageable) {
+		return userRepository.findByEmailContainingIgnoreCase(email, pageable);
+	}
+
+	public Page<AppUser> findByStatus(boolean status, Pageable pageable) {
+		return userRepository.findByEnabledContainingIgnoreCase(status, pageable);
+	}
+	
 }

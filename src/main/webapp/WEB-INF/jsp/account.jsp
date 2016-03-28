@@ -91,13 +91,24 @@
 				</div>
 			</form:form>
 
-			<form:form method="POST" modelAttribute="searchTermBackingBean"
-				action="/account/credential/search">
+			<form:form method="POST" modelAttribute="searchTermBackingBean" >
+			<%-- action="/account/credential/search"> --%>
 				<div class="input-group col-xs-3 pull-right">
-					<form:input class="form-control" path="searchTerm" />
+					<form:input id="searchTerm" class="form-control" path="searchTerm" />
 					<div class="input-group-btn">
-						<input id="trigger-credential-tab" type="submit"
-							class="btn btn-primary" value="Search" />
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="true">
+								SearchBy <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a id="searchByCompany" href="/account/credential/searchByCompany">Search by company</a></li>
+								<li><a id="searchByEnv" href="/account/credential/searchByEnv">Search by environment</a></li>
+								<li><a id="searchByDesc" href="/account/credential/searchByDesc">Search by description</a></li>
+								<li><a id="searchByModifier" href="/account/credential/searchByModifier">Search by modifier</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</form:form>
@@ -187,6 +198,50 @@
 								$("#modalRemove .removeBtn").attr("href",
 										$(this).attr("href"));
 								$("#modalRemove").modal();
+							});
+					
+					$("#searchByCompany").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/account/credential/searchAll");
+								}
+							});
+					
+					$("#searchByEnv").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/account/credential/searchAll");
+								}
+							});
+					
+					$("#searchByDesc").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/account/credential/searchAll");
+								}
+							});
+					
+					$("#searchByModifier").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/account/credential/searchAll");
+								}
 							});
 
 				});

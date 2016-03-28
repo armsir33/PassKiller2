@@ -142,4 +142,59 @@ public class UserController {
 		return "redirect:/account.html";
 	}
 
+	@RequestMapping(value = "/account/credential/searchAll", method = RequestMethod.GET)
+	public String searchAll(Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findAll(page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "account";
+	}
+	
+	@RequestMapping(value = "/account/credential/searchByCompany/{company}", method = RequestMethod.GET)
+	public String searchByCompany(@PathVariable String company, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByCompany(company, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "account";
+	}
+
+
+	@RequestMapping(value = "/account/credential/searchByEnv/{env}", method = RequestMethod.GET)
+	public String searchByEnv(@PathVariable String env, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByEnvironment(env, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "account";
+	}
+
+	@RequestMapping(value = "/account/credential/searchByDesc/{desc}", method = RequestMethod.GET)
+	public String searchByDesc(@PathVariable String desc, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByDesc(desc, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "account";
+	}
+
+	@RequestMapping(value = "/account/credential/searchByModifier/{modifier}", method = RequestMethod.GET)
+	public String searchByModifier(@PathVariable String modifier, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByModifier(modifier, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "account";
+	}
+
 }

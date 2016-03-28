@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.midport.entity.Credential;
@@ -34,7 +35,7 @@ public class CredentialService {
 	}
 
 	public Page<Credential> findByModifier(String modifier, Pageable page) {
-		return credentialRepository.findByModifier(modifier, page);
+		return credentialRepository.findByModifierContainingIgnoreCase(modifier, page);
 	}
 
 	public Page<Credential> findByRange(String range, Pageable pageable) {
@@ -59,6 +60,18 @@ public class CredentialService {
 
 	public List<Credential> findAll() {
 		return credentialRepository.findAll();
+	}
+
+	public Page<Credential> findByCompany(String company, Pageable pageable) {
+		return credentialRepository.findByCompanyContainingIgnoreCase(company, pageable);
+	}
+
+	public Page<Credential> findByEnvironment(String environment, Pageable pageable) {
+		return credentialRepository.findByEnvironmentContainingIgnoreCase(environment, pageable);
+	}
+
+	public Page<Credential> findByDesc(String description, Pageable pageable) {
+		return credentialRepository.findByDescriptionContainingIgnoreCase(description, pageable);
 	}
 
 }

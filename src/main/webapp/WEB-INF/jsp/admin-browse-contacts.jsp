@@ -21,13 +21,25 @@
 		</ul>
 	</div>
 
-	<form:form method="POST" modelAttribute="searchTermBackingBean"
-		action="/admin/contacts/search">
+	<form:form method="POST" modelAttribute="searchTermBackingBean" >
 		<div class="input-group col-xs-3 pull-right">
 			<form:input class="form-control" path="searchTerm" />
 			<div class="input-group-btn">
-				<input id="trigger-user-tab" type="submit" class="btn btn-primary"
-					value="Search" />
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="true">
+						SearchBy <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a id="searchByName"
+							href="/admin/contacts/searchByName">Search by name</a></li>
+						<li><a id="searchByEmail"
+							href="/admin/contacts/searchByEmail">Search by email</a></li>
+						<li><a id="searchByStatus"
+							href="/admin/contacts/searchByStatus">Search by status</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</form:form>
@@ -94,8 +106,6 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				$('.nav-tabs a:second').tab('show') // Select first tab
-
 				$(".triggerContactRemove").click(
 						function(e) {
 							e.preventDefault();
@@ -104,5 +114,49 @@
 							$("#modalContactRemove").modal();
 						});
 
+				$("#searchByName").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/contacts/searchAll");
+							}
+						});
+				
+				$("#searchByEmail").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/contacts/searchAll");
+							}
+						});
+				
+				$("#searchByStatus").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/contacts/searchAll");
+							}
+						});
 			});
 </script>

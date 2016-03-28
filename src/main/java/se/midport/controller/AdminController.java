@@ -196,6 +196,171 @@ public class AdminController {
 		return "admin-browse-users";
 	}
 	
+	@RequestMapping(value = "/admin/users/searchAll", method = RequestMethod.GET)
+	public String searchAllUsers(Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findAll(page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/users/searchByUsername/{username}", method = RequestMethod.GET)
+	public String searchByUsername(@PathVariable String username, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findByUsername(username, page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/users/searchByFirstName/{firstName}", method = RequestMethod.GET)
+	public String searchByFirstName(@PathVariable String firstName, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findByFirstName(firstName, page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/users/searchByLastName/{lastName}", method = RequestMethod.GET)
+	public String searchByLastName(@PathVariable String lastName, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findByLastName(lastName, page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/users/searchByEmail/{email}", method = RequestMethod.GET)
+	public String searchUsersByEmail(@PathVariable String email, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findByEmail(email, page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/users/searchByStatus/{status}", method = RequestMethod.GET)
+	public String searchUsersByStatus(@PathVariable boolean status, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<AppUser> users = userService.findByStatus(status, page);
+		model.addAttribute("users", users.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", users.getTotalPages());
+
+		return "admin-browse-users";
+	}
+	
+	@RequestMapping(value = "/admin/credentials/searchAll", method = RequestMethod.GET)
+	public String searchAllCredentials(Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findAll(page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "admin-browse-credentials";
+	}
+	
+	@RequestMapping(value = "/admin/credentials/searchByCompany/{company}", method = RequestMethod.GET)
+	public String searchByCompany(@PathVariable String company, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByCompany(company, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "admin-browse-credentials";
+	}
+	
+	@RequestMapping(value = "/admin/credentials/searchByEnv/{env}", method = RequestMethod.GET)
+	public String searchByEnv(@PathVariable String env, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByEnvironment(env, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "admin-browse-credentials";
+	}
+	
+	@RequestMapping(value = "/admin/credentials/searchByDesc/{desc}", method = RequestMethod.GET)
+	public String searchByDesc(@PathVariable String desc, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByDesc(desc, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "admin-browse-credentials";
+	}
+	
+	@RequestMapping(value = "/admin/credentials/searchByModifier/{modifier}", method = RequestMethod.GET)
+	public String searchByModifier(@PathVariable String modifier, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByModifier(modifier, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+
+		return "admin-browse-credentials";
+	}
+	
+	@RequestMapping(value = "/admin/contacts/searchAll", method = RequestMethod.GET)
+	public String searchAllContacts(Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Contact> contacts = contactService.findAll(page);
+		model.addAttribute("contacts", contacts.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", contacts.getTotalPages());
+
+		return "admin-browse-contacts";
+	}
+	
+	@RequestMapping(value = "/admin/contacts/searchByName/{name}", method = RequestMethod.GET)
+	public String searchByName(@PathVariable String name, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Contact> contacts = contactService.findByName(name, page);
+		model.addAttribute("contacts", contacts.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", contacts.getTotalPages());
+
+		return "admin-browse-contacts";
+	}
+	
+	@RequestMapping(value = "/admin/contacts/searchByEmail/{email}", method = RequestMethod.GET)
+	public String searchContactsByEmail(@PathVariable String email, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Contact> contacts = contactService.findByEmail(email, page);
+		model.addAttribute("contacts", contacts.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", contacts.getTotalPages());
+
+		return "admin-browse-contacts";
+	}
+	
+	@RequestMapping(value = "/admin/contacts/searchByStatus/{status}", method = RequestMethod.GET)
+	public String searchByStatus(@PathVariable String status, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Contact> contacts = contactService.findByStatus(status, page);
+		model.addAttribute("contacts", contacts.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", contacts.getTotalPages());
+
+		return "admin-browse-contacts";
+	}
+	
 	@RequestMapping(value = "/admin/contact-edit/{id}", method = RequestMethod.GET)
 	public String editContact(@PathVariable Integer id, Model model) {
 		Contact contact = contactService.findOne(id);

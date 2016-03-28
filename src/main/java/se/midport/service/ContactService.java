@@ -42,5 +42,17 @@ public class ContactService {
 		contactRepository.delete(id);
 	}
 
+	public Page<Contact> findByName(String name, Pageable pageable) {
+		return contactRepository.findByNameContainingIgnoreCase(name, pageable);
+	}
+
+	public Page<Contact> findByStatus(String status, Pageable pageable) {
+		return contactRepository.findByStatus(status, pageable);
+	}
+
+	public Page<Contact> findByEmail(String email, Pageable pageable) {
+		return contactRepository.findByEmailContainingIgnoreCase(email, pageable);
+	}
+
 	
 }

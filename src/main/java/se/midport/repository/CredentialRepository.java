@@ -10,8 +10,14 @@ public interface CredentialRepository extends JpaRepository<Credential, Integer>
 
 	List<Credential> findByNameContainingIgnoreCase(String name);
 
-	Page<Credential> findByModifier(String modifier, Pageable pageable);
+	Page<Credential> findByModifierContainingIgnoreCase(String modifier, Pageable pageable);
 
 	Page<Credential> findByRange(String range, Pageable pageable);
+
+	Page<Credential> findByCompanyContainingIgnoreCase(String company, Pageable pageable);
+
+	Page<Credential> findByEnvironmentContainingIgnoreCase(String environment, Pageable pageable);
+
+	Page<Credential> findByDescriptionContainingIgnoreCase(String description, Pageable pageable);
 
 }

@@ -21,13 +21,27 @@
 		</ul>
 	</div>
 
-	<form:form method="POST" modelAttribute="searchTermBackingBean"
-		action="/admin/credential/search">
+	<form:form method="POST" modelAttribute="searchTermBackingBean" >
+		<%-- action="/admin/credential/search"> --%>
 		<div class="input-group col-xs-3 pull-right">
 			<form:input class="form-control" path="searchTerm" />
 			<div class="input-group-btn">
-				<input id="trigger-credential-tab" type="submit"
-					class="btn btn-primary" value="Search" />
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="true">
+						SearchBy <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a id="searchByCompany"
+							href="/admin/credentials/searchByCompany">Search by company</a></li>
+						<li><a id="searchByEnv"
+							href="/admin/credentials/searchByEnv">Search by environment</a></li>
+						<li><a id="searchByDesc"
+							href="/admin/credentials/searchByDesc">Search by description</a></li>
+						<li><a id="searchByModifier" href="/admin/credentials/searchByModifier">Search by modifier</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</form:form>
@@ -98,8 +112,6 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				$('.nav-tabs a:third').tab('show') // Select first tab
-
 				$(".triggerRemove").click(
 						function(e) {
 							e.preventDefault();
@@ -116,6 +128,65 @@
 							$("#modalUserRemove").modal();
 						});
 
+				$("#searchByCompany").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/credentials/searchAll");
+							}
+						});
+				
+				$("#searchByEnv").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/credentials/searchAll");
+							}
+						});
+				
+				$("#searchByDesc").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/credentials/searchAll");
+							}
+						});
+				
+				$("#searchByModifier").click(
+						function() {
+							var _href = $(this).attr("href");
+							var searchTerm = $("#searchTerm").val();
+							if (searchTerm != "undefined"
+									&& searchTerm != null
+									&& searchTerm != "") {
+								$(this).attr("href",
+										_href + "/" + searchTerm);
+							} else {
+								$(this).attr("href",
+										"/admin/credentials/searchAll");
+							}
+						});
 			});
 </script>
 </div>
