@@ -55,7 +55,7 @@ body {
 								aria-controls="address" role="tab" data-toggle="tab">Address</a></li>
 							<li role="presentation"><a href="#contact"
 								aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
-							<li role="presentation"><a href="#password"
+							<li role="presentation"><a href="#passwordtab"
 								aria-controls="contact" role="tab" data-toggle="tab">Password</a></li>
 						</ul>
 						
@@ -144,17 +144,16 @@ body {
 								</div>
 							</div>
 							
-							<div role="tabpanel" class="tab-pane" id="password">
+							<div role="tabpanel" class="tab-pane" id="passwordtab">
 								<div class="form-group">
 									<label>New Password</label>
-									<form:password path="password" placeholder="Enter New Password again Here.."
+									<form:password id="password" name="password" path="password" placeholder="Enter New Password Here.."
 										cssClass="form-control" />
 								</div>
 								<div class="form-group">
 									<label>New Password Again</label>
-									<form:password path="repassword"
-										placeholder="Enter New Password again Here.."
-										cssClass="form-control" />
+									<input type="password" id="repassword" name="repassword" placeholder="Enter New Password again Here.."
+										class="form-control" />
 								</div>
 							</div>
 						</div>
