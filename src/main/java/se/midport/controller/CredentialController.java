@@ -65,4 +65,54 @@ public class CredentialController {
 			return "credentials";
 		}
 	}
+	
+	@RequestMapping(value = "/credentials/searchAll", method = RequestMethod.GET)
+	public String getAllCredentials(Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findAll(page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "credentials";
+	}
+	
+	@RequestMapping(value = "/credentials/searchByCompany/{company}", method = RequestMethod.GET)
+	public String searchCredentialsByCompany(@PathVariable String company, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByCompany(company, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "credentials";
+	}
+	
+	@RequestMapping(value = "/credentials/searchByEnv/{env}", method = RequestMethod.GET)
+	public String searchCredentialsByEnv(@PathVariable String env, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByEnvironment(env, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "credentials";
+	}
+	
+	@RequestMapping(value = "/credentials/searchByDesc/{desc}", method = RequestMethod.GET)
+	public String searchCredentialsByDesc(@PathVariable String desc, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByDesc(desc, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "credentials";
+	}
+	
+	@RequestMapping(value = "/credentials/searchByModifier/{modifier}", method = RequestMethod.GET)
+	public String searchCredentialsByModifier(@PathVariable String modifier, Model model) {
+		PageRequest page = new PageRequest(0, PAGE_SIZE);
+		Page<Credential> credentials = credentialService.findByModifier(modifier, page);
+		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("pageNo", 1);
+		model.addAttribute("pageMax", credentials.getTotalPages());
+		return "credentials";
+	}
 }

@@ -10,7 +10,23 @@
 		<div class="input-group col-xs-3 pull-right">
 			<form:input class="form-control" path="searchTerm" />
 			<div class="input-group-btn">
-				<input type="submit" class="btn btn-primary" value="Search" />
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="true">
+						SearchBy <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a id="searchByCompany"
+							href="/credentials/searchByCompany">Search by company</a></li>
+						<li><a id="searchByEnv"
+							href="/credentials/searchByEnv">Search by environment</a></li>
+						<li><a id="searchByDesc"
+							href="/credentials/searchByDesc">Search by description</a></li>
+						<li><a id="searchByModifier"
+							href="/credentials/searchByModifier">Search by modifier</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</form:form>
@@ -53,4 +69,54 @@
 			</c:if>
 		</ul>
 	</nav>
+	
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$("#searchByCompany").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/credentials/searchAll");
+								}
+							});
+					
+					$("#searchByEnv").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/credentials/searchAll");
+								}
+							});
+					
+					$("#searchByDesc").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/credentials/searchAll");
+								}
+							});
+					
+					$("#searchByModifier").click(
+							function() {
+								var _href = $(this).attr("href"); 
+								var searchTerm = $("#searchTerm").val();
+								if(searchTerm != "undefined" && searchTerm != null && searchTerm != "") {
+									$(this).attr("href", _href + "/" + searchTerm);
+								} else {
+									$(this).attr("href", "/credentials/searchAll");
+								}
+							});
+
+				});
+	</script>
 </div>

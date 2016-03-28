@@ -80,7 +80,7 @@ public class UserController {
 		model.addAttribute("credentials", credentials.getContent());
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageMax", credentials.getTotalPages());
-		return "admin-browse-credentials";
+		return "account";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

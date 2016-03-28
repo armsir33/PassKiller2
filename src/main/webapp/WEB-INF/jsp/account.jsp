@@ -92,7 +92,6 @@
 			</form:form>
 
 			<form:form method="POST" modelAttribute="searchTermBackingBean" >
-			<%-- action="/account/credential/search"> --%>
 				<div class="input-group col-xs-3 pull-right">
 					<form:input id="searchTerm" class="form-control" path="searchTerm" />
 					<div class="input-group-btn">

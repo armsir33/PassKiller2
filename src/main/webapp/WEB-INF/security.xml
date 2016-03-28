@@ -12,6 +12,9 @@
 		<intercept-url pattern="/account**" access="isAuthenticated()" />
 		<intercept-url pattern="/account/**" access="isAuthenticated()" />
 		<intercept-url pattern="/account/**/**" access="isAuthenticated()" />
+		<intercept-url pattern="/credentials**" access="isAuthenticated()" />
+		<intercept-url pattern="/credentials/**" access="isAuthenticated()" />
+		<intercept-url pattern="/credentials/**/**" access="isAuthenticated()" />
 		<form-login login-page="/login.html" />
 		<logout logout-url="/logout" />
 		
