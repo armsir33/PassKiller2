@@ -74,4 +74,20 @@ public class CredentialService {
 		return credentialRepository.findByDescriptionContainingIgnoreCase(description, pageable);
 	}
 
+	public Page<Credential> findByCompanyAndRange(String company, String range, Pageable pageable) {
+		return credentialRepository.findByCompanyAndRangeContainingAllIgnoreCase(company, range, pageable);
+	}
+
+	public Page<Credential> findByEnvironmentAndRange(String environment, String range, Pageable pageable) {
+		return credentialRepository.findByEnvironmentAndRangeContainingAllIgnoreCase(environment, range, pageable);
+	}
+
+	public Page<Credential> findByDescAndRange(String desc, String range, Pageable pageable) {
+		return credentialRepository.findByDescriptionAndRangeContainingAllIgnoreCase(desc, range, pageable);
+	}
+
+	public Page<Credential> findByModifierAndRange(String modifier, String range, Pageable pageable) {
+		return credentialRepository.findByModifierContainingAllIgnoreCase(modifier, range, pageable);
+	}
+
 }
