@@ -72,6 +72,14 @@ public class UserController {
 		credentialService.save(credential);
 		return "redirect:/account.html";
 	}
+	
+	@RequestMapping(value = "/account/{pageNo}", method = RequestMethod.POST)
+	public String accountSubmitWithPageNo(@ModelAttribute("credential") Credential credential, @PathVariable Integer pageNo, Principal principal) {
+		credential.setModifier(principal.getName());
+		credential.setDate(new Date());
+		credentialService.save(credential);
+		return "redirect:/account/"+pageNo+".html";
+	}
 
 	@RequestMapping(value = "/account/{pageNo}", method = RequestMethod.GET)
 	public String getpass(@PathVariable Integer pageNo, Model model) {
