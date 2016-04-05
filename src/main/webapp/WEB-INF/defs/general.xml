@@ -90,4 +90,28 @@
     <put-attribute name="body" value="/WEB-INF/jsp/contact-reply.jsp" />
     <put-attribute name="current" value="admin" />
   </definition>
+  
+  <definition name="account-searchByCompany" extends="common">
+    <put-attribute name="title" value="Account" />
+    <put-attribute name="body" value="/WEB-INF/jsp/account-searchByCompany.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
+  
+  <definition name="account-searchByEnv" extends="common">
+    <put-attribute name="title" value="Account" />
+    <put-attribute name="body" value="/WEB-INF/jsp/account-searchByEnv.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
+  
+  <definition name="account-searchByDesc" extends="common">
+    <put-attribute name="title" value="Account" />
+    <put-attribute name="body" value="/WEB-INF/jsp/account-searchByDesc.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
+  
+  <definition name="account-searchByModifier" extends="common">
+    <put-attribute name="title" value="Account" />
+    <put-attribute name="body" value="/WEB-INF/jsp/account-searchByModifier.jsp" />
+    <put-attribute name="current" value="account" />
+  </definition>
 </tiles-definitions>

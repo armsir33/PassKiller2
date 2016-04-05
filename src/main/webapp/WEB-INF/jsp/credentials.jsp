@@ -24,7 +24,7 @@
 						<li><a id="searchByDesc"
 							href="/credentials/searchByDesc">Search by description</a></li>
 						<li><a id="searchByModifier"
-							href="/credentials/searchByModifier">Search by modifier</a></li>
+							href="/credentials/searchByModifier/${pageNo}">Search by modifier</a></li>
 					</ul>
 				</div>
 			</div>
@@ -62,10 +62,10 @@
 	<nav>
 		<ul class="pager">
 			<c:if test="${pageNo > 1}">
-				<li><a href="/credentials/${pageNo - 1}.html">Previous</a></li>
+				<li><a href="/credentials/${pageNo - 1}">Previous</a></li>
 			</c:if>
 			<c:if test="${pageNo < pageMax }">
-				<li><a href="/credentials/${pageNo + 1}.html">Next</a></li>
+				<li><a href="/credentials/${pageNo + 1}">Next</a></li>
 			</c:if>
 		</ul>
 	</nav>

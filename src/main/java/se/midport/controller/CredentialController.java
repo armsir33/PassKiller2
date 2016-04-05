@@ -76,42 +76,46 @@ public class CredentialController {
 		return "credentials";
 	}
 	
-	@RequestMapping(value = "/credentials/searchByCompany/{company}", method = RequestMethod.GET)
-	public String searchCredentialsByCompany(@PathVariable String company, Model model) {
-		PageRequest page = new PageRequest(0, PAGE_SIZE);
+	@RequestMapping(value = "/credentials/searchByCompany/{pageNo}/{company}", method = RequestMethod.GET)
+	public String searchCredentialsByCompany(@PathVariable Integer pageNo, @PathVariable String company, Model model) {
+		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
 		Page<Credential> credentials = credentialService.findByCompanyAndRange(company, "Public", page);
 		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("company", company);
 		model.addAttribute("pageNo", 1);
 		model.addAttribute("pageMax", credentials.getTotalPages());
 		return "credentials";
 	}
 	
-	@RequestMapping(value = "/credentials/searchByEnv/{env}", method = RequestMethod.GET)
-	public String searchCredentialsByEnv(@PathVariable String env, Model model) {
-		PageRequest page = new PageRequest(0, PAGE_SIZE);
+	@RequestMapping(value = "/credentials/searchByEnv/{pageNo}/{env}", method = RequestMethod.GET)
+	public String searchCredentialsByEnv(@PathVariable Integer pageNo, @PathVariable String env, Model model) {
+		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
 		Page<Credential> credentials = credentialService.findByEnvironmentAndRange(env, "Public", page);
 		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("env", env);
 		model.addAttribute("pageNo", 1);
 		model.addAttribute("pageMax", credentials.getTotalPages());
 		return "credentials";
 	}
 	
-	@RequestMapping(value = "/credentials/searchByDesc/{desc}", method = RequestMethod.GET)
-	public String searchCredentialsByDesc(@PathVariable String desc, Model model) {
-		PageRequest page = new PageRequest(0, PAGE_SIZE);
+	@RequestMapping(value = "/credentials/searchByDesc/{pageNo}/{desc}", method = RequestMethod.GET)
+	public String searchCredentialsByDesc(@PathVariable Integer pageNo, @PathVariable String desc, Model model) {
+		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
 		Page<Credential> credentials = credentialService.findByDescAndRange(desc, "Public", page);
 		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("desc", desc);
 		model.addAttribute("pageNo", 1);
 		model.addAttribute("pageMax", credentials.getTotalPages());
 		return "credentials";
 	}
 	
-	@RequestMapping(value = "/credentials/searchByModifier/{modifier}", method = RequestMethod.GET)
-	public String searchCredentialsByModifier(@PathVariable String modifier, Model model) {
-		PageRequest page = new PageRequest(0, PAGE_SIZE);
+	@RequestMapping(value = "/credentials/searchByModifier/{pageNo}/{modifier}", method = RequestMethod.GET)
+	public String searchCredentialsByModifier(@PathVariable Integer pageNo, @PathVariable String modifier, Model model) {
+		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
 		Page<Credential> credentials = credentialService.findByModifierAndRange(modifier, "Public", page);
 		model.addAttribute("credentials", credentials.getContent());
-		model.addAttribute("pageNo", 1);
+		model.addAttribute("modifier", modifier);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageMax", credentials.getTotalPages());
 		return "credentials";
 	}
