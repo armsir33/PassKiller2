@@ -47,6 +47,7 @@ public class CredentialController {
 		PageRequest page = new PageRequest(pageNo - 1, PAGE_SIZE);
 		Page<Credential> credentials = credentialService.findByRange("Public", page);
 		model.addAttribute("credentials", credentials.getContent());
+		model.addAttribute("key", "none");
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageMax", credentials.getTotalPages());
 		System.out.println(credentials.getTotalPages());
